@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <SqlDataSource ComponentName="dashboardSqlDataSource1">
+      <Name>SQL Data Source 1</Name>
+      <Connection Name="nwind" ProviderKey="Access97">
+        <Parameters>
+          <Parameter Name="database" Value="nwind.mdb" />
+          <Parameter Name="read only" Value="1" />
+          <Parameter Name="generateConnectionHelper" Value="false" />
+        </Parameters>
+      </Connection>
+      <Query Type="SelectQuery" Name="Invoices">
+        <Tables>
+          <Table Name="Invoices" X="30" Y="30" Width="125" Height="552" />
+        </Tables>
+        <Columns>
+          <Column Table="Invoices" Name="ShipName" />
+          <Column Table="Invoices" Name="ShipAddress" />
+          <Column Table="Invoices" Name="ShipCity" />
+          <Column Table="Invoices" Name="ShipRegion" />
+          <Column Table="Invoices" Name="ShipPostalCode" />
+          <Column Table="Invoices" Name="ShipCountry" />
+          <Column Table="Invoices" Name="CustomerID" />
+          <Column Table="Invoices" Name="Customers.CompanyName" />
+          <Column Table="Invoices" Name="Address" />
+          <Column Table="Invoices" Name="City" />
+          <Column Table="Invoices" Name="Region" />
+          <Column Table="Invoices" Name="PostalCode" />
+          <Column Table="Invoices" Name="Country" />
+          <Column Table="Invoices" Name="Salesperson" />
+          <Column Table="Invoices" Name="OrderID" />
+          <Column Table="Invoices" Name="OrderDate" />
+          <Column Table="Invoices" Name="RequiredDate" />
+          <Column Table="Invoices" Name="ShippedDate" />
+          <Column Table="Invoices" Name="Shippers.CompanyName" />
+          <Column Table="Invoices" Name="ProductID" />
+          <Column Table="Invoices" Name="ProductName" />
+          <Column Table="Invoices" Name="UnitPrice" />
+          <Column Table="Invoices" Name="Quantity" />
+          <Column Table="Invoices" Name="Discount" />
+          <Column Table="Invoices" Name="ExtendedPrice" />
+          <Column Table="Invoices" Name="Freight" />
+        </Columns>
+      </Query>
+      <Query Type="SelectQuery" Name="Customers">
+        <Tables>
+          <Table Name="Customers" X="30" Y="30" Width="125" Height="267" />
+        </Tables>
+        <Columns>
+          <Column Table="Customers" Name="Country" />
+        </Columns>
+      </Query>
+      <ResultSchema>
+        <DataSet Name="SQL Data Source 1">
+          <View Name="Invoices">
+            <Field Name="ShipName" Type="String" />
+            <Field Name="ShipAddress" Type="String" />
+            <Field Name="ShipCity" Type="String" />
+            <Field Name="ShipRegion" Type="String" />
+            <Field Name="ShipPostalCode" Type="String" />
+            <Field Name="ShipCountry" Type="String" />
+            <Field Name="CustomerID" Type="String" />
+            <Field Name="Customers.CompanyName" Type="String" />
+            <Field Name="Address" Type="String" />
+            <Field Name="City" Type="String" />
+            <Field Name="Region" Type="String" />
+            <Field Name="PostalCode" Type="String" />
+            <Field Name="Country" Type="String" />
+            <Field Name="Salesperson" Type="String" />
+            <Field Name="OrderID" Type="Int32" />
+            <Field Name="OrderDate" Type="DateTime" />
+            <Field Name="RequiredDate" Type="DateTime" />
+            <Field Name="ShippedDate" Type="DateTime" />
+            <Field Name="Shippers.CompanyName" Type="String" />
+            <Field Name="ProductID" Type="Int32" />
+            <Field Name="ProductName" Type="String" />
+            <Field Name="UnitPrice" Type="Decimal" />
+            <Field Name="Quantity" Type="Int16" />
+            <Field Name="Discount" Type="Single" />
+            <Field Name="ExtendedPrice" Type="Decimal" />
+            <Field Name="Freight" Type="Decimal" />
+          </View>
+          <View Name="Customers">
+            <Field Name="Country" Type="String" />
+          </View>
+        </DataSet>
+      </ResultSchema>
+      <ConnectionOptions CloseConnection="true" />
+    </SqlDataSource>
+  </DataSources>
+  <Parameters>
+    <Parameter Name="Country" Value="Canada">
+      <DynamicListLookUpSettings DataSourceName="dashboardSqlDataSource1" DataMember="Customers" ValueMember="Country" DisplayMember="Country" />
+    </Parameter>
+  </Parameters>
+  <Items>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="dashboardSqlDataSource1" DataMember="Invoices" FilterString="[DataItem3] = ?Country">
+      <DataItems>
+        <Measure DataMember="ExtendedPrice" DefaultId="DataItem0" />
+        <Measure DataMember="Freight" DefaultId="DataItem1" />
+        <Dimension DataMember="OrderDate" DateTimeGroupInterval="MonthYear" DefaultId="DataItem2" />
+        <Dimension DataMember="Country" DefaultId="DataItem3" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem3" />
+      </HiddenDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="StackedBar">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+            <Simple SeriesType="StackedBar">
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutItem DashboardItem="chartDashboardItem1" />
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
