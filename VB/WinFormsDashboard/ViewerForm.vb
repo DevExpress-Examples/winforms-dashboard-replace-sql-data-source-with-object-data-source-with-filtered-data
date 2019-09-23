@@ -31,15 +31,15 @@ Namespace WinFormsDashboard
 			For Each query In dataSources.SelectMany(Function(ds) ds.Queries.Select(Function(q) New With {Key .DataSource = ds, Key .Query = q}))
 				Dim ods = New DashboardObjectDataSource("ods|" & query.DataSource.ComponentName & "|" & query.Query.Name)
 				e.Dashboard.DataSources.Add(ods)
-				For Each item In e.Dashboard.Items.OfType(Of DataDashboardItem)().Where(Function(i) i.DataSource = query.DataSource AndAlso i.DataMember = query.Query.Name)
-					item.DataMember = ""
-					item.DataSource = ods
-				Next item
-				For Each parameter In e.Dashboard.Parameters.Select(Function(p) p.LookUpSettings).OfType(Of DynamicListLookUpSettings)().Where(Function(p) p.DataSource = query.DataSource AndAlso p.DataMember = query.Query.Name)
-					parameter.DataMember = ""
-					parameter.DataSource = ods
-				Next parameter
-			Next query
+                For Each item In e.Dashboard.Items.OfType(Of DataDashboardItem)().Where(Function(i) i.DataSource.Equals(query.DataSource) AndAlso i.DataMember = query.Query.Name)
+                    item.DataMember = ""
+                    item.DataSource = ods
+                Next item
+                For Each parameter In e.Dashboard.Parameters.Select(Function(p) p.LookUpSettings).OfType(Of DynamicListLookUpSettings)().Where(Function(p) p.DataSource.Equals(query.DataSource) AndAlso p.DataMember = query.Query.Name)
+                    parameter.DataMember = ""
+                    parameter.DataSource = ods
+                Next parameter
+            Next query
 		End Sub
 
 		Private Sub dashboardViewer1_DataLoading(ByVal sender As Object, ByVal e As DataLoadingEventArgs) Handles dashboardViewer1.DataLoading
