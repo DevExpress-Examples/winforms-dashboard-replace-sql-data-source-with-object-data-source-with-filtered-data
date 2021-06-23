@@ -19,7 +19,7 @@ To accomplish this task, handle the [DashboardLoaded](https://docs.devexpress.c
 
 ![screenshot](/images/screenshot.png)
 
-See also:
+## More Examples
 * [T347509: How to get data from the Dashboard DataSource and convert it to DataTable](https://www.devexpress.com/Support/Center/Question/Details/T347509) 
 
 
