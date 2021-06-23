@@ -3,7 +3,7 @@
 
 * [ViewerForm.cs](./CS/WinFormsDashboard/ViewerForm.cs) (VB: [ViewerForm.vb](./VB/WinFormsDashboard/ViewerForm.vb))
 <!-- default file list end -->
-# How to Replace the Dashboard Sql Data Source with the Dashboard Object Data Source
+# Dashboard for WinForms - How to Replace the Dashboard Sql Data Source with the Dashboard Object Data Source
 
 
 The [DashboardSqlDataSource](https://docs.devexpress.com/Dashboard/DevExpress.DashboardCommon.DashboardSqlDataSource) has [two modes for data retrieval](https://docs.devexpress.com/Dashboard/17083):
